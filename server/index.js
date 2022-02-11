@@ -1,11 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors')
 const app = express();
 
 const UserModel = require("./models/User")
-const PORT = 3000;
-app.get('/',async(req,res)=>{
-    const user = new UserModel({userName:"Zeeshan",age:23,email:"zeshan@gmail.com"})
+const PORT = 3001;
+app.use(cors());
+app.use(express.json());
+app.post('/createUser',async(req,res)=>{
+    const { userName, age, email} = req.body;
+    const user = new UserModel({userName:userName, age:age, email:email})
     try {
         await user.save();
         res.send("Data Added Successfully");
@@ -16,7 +20,6 @@ app.get('/',async(req,res)=>{
 
 })
 
-app.use(express.json());
 
 mongoose.connect("mongodb+srv://zeshanfa:12911234@crud.fsxck.mongodb.net/crudOps?retryWrites=true&w=majority", {
     useNewUrlParser: true
