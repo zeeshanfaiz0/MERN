@@ -24,8 +24,9 @@ input,button{
 .userDisplay> label{
   font-size: 20px;
   align-items: center;
-  color: aqua;
+  color: rgb(207, 164, 43);
   margin-top: 13px;
   margin-right: 8px;
   margin-left: 8px;
+  text-decoration:underline;
 }
